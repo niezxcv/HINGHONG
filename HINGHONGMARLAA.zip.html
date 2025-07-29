@@ -22,7 +22,6 @@
       transition: background-image 1s ease;
     }
 
-    /* Scene бүр дэлгэцийн өндөртэй, fade анимэйшнтэй */
     .scene {
       min-height: 100vh;
       padding: 40px 20px;
@@ -31,7 +30,7 @@
       opacity: 0;
       display: none;
       transition: opacity 1s ease;
-      /* Доорх background дүрсүүд scene тус бүрт байна */
+      
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -39,7 +38,7 @@
       color: white;
       text-shadow: 0 0 5px #cc3377;
     }
-    /* Тусгай background зургууд */
+    
     #start-screen {
       background-image: url('https://d7hftxdivxxvm.cloudfront.net/?quality=80&resize_to=width&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2F2RNK1P0BYVrSCZEy_Sd1Ew%252F3417757448_4a6bdf36ce_o.jpg&width=910');
     }
@@ -64,7 +63,7 @@
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    /* Үндсэн товч */
+    
     button {
       font-size: 1.5rem;
       padding: 12px 25px;
@@ -85,7 +84,7 @@
       box-shadow: 0 8px 20px rgba(255,105,180,0.4);
     }
 
-    /* Start-screen buttons */
+    
     #character-screen button:first-child {
       background-color: #ff69b4; /* pink red */
       box-shadow: 0 4px 12px rgba(255, 20, 147, 0.7);
@@ -105,7 +104,7 @@
       box-shadow: 0 8px 20px rgba(70, 130, 180, 0.9);
     }
 
-    /* House screen buttons */
+   
     #house-screen button {
       background-color: #87ceeb; /* sky blue */
       box-shadow: 0 4px 12px rgba(70, 130, 180, 0.7);
@@ -119,7 +118,7 @@
       box-shadow: 0 8px 20px rgba(70, 130, 180, 0.9);
     }
 
-    /* Back button */
+    
     .back-button {
       position: fixed;
       top: 10px;
@@ -162,14 +161,13 @@
 </head>
 <body>
 
-  <!-- Эхлэл дэлгэц -->
+  
   <div class="scene active" id="start-screen">
     <h1> HING HONG,
         START DARVAL UNDUR BOLNO :)))) </h1>
     <button onclick="transitionTo('start-screen', 'character-screen')">Start</button>
   </div>
 
-  <!-- Marlaa сонгох дэлгэц -->
   <div class="scene" id="character-screen">
     <h2>SONGOLDOOO IINHOO 
         </h2>
@@ -177,14 +175,14 @@
     <button onclick="selectCharacter('cool')">Cool Marlaa YU</button>
   </div>
 
-  <!-- Гэрт орох дэлгэц -->
+
   <div class="scene" id="house-screen">
     <h2> TEGVEL 10K ZEELEECH!  :)</h2>
     <button onclick="transitionTo('house-screen', 'room-screen')">Yes</button>
     <button onclick="transitionTo('house-screen', 'room-screen')">Yes</button>
   </div>
 
-  <!-- Өрөө сонгох -->
+
   <div class="scene" id="room-screen">
     <h2> ZA BAYRLAA  ,NEGIIN SONGOOROI 
     </h2>
@@ -194,16 +192,14 @@
     <button onclick="enterRoom(4)">AA</button>
   </div>
 
-  <!-- Өрөөнд орсон хэсэг -->
+
   <div class="scene" id="room-view">
     <h2 id="room-title"></h2>
     <iframe id="music" allow="autoplay; fullscreen"></iframe>
   </div>
 
-  <!-- Буцах товч -->
   <button class="back-button hidden" id="backBtn" onclick="goBack()">← UHRAH </button>
 
-  <!-- Marlaa алхаж буй дүрс -->
   <img class="marlaa-walk" src="https://media.tenor.com/WxgcTdmAQb8AAAAM/dancing-cat.gif" alt="Marlaa walking">
 
   <script>
@@ -214,7 +210,6 @@
       const fromEl = document.getElementById(from);
       const toEl = document.getElementById(to);
 
-      // fade out current scene
       let opacityOut = 1;
       const fadeOut = setInterval(() => {
         opacityOut -= 0.1;
@@ -224,11 +219,9 @@
           fromEl.classList.remove('active');
           fromEl.style.opacity = 1;
 
-          // fade in next scene
           toEl.classList.add('active');
           toEl.style.opacity = 0;
 
-          // Текстүүдэд доош хөдлөх эффект өгөх
           const texts = toEl.querySelectorAll('h1, h2, button, #room-title');
           texts.forEach(el => {
             el.style.opacity = 0;
@@ -242,8 +235,7 @@
             toEl.style.opacity = opacityIn;
             if (opacityIn >= 1) {
               clearInterval(fadeIn);
-
-              // Текстүүдийг аажмаар харагдуулах ба дээш нь хөдөлгөх
+              
               texts.forEach(el => {
                 el.style.opacity = 1;
                 el.style.transform = 'translateY(0)';
@@ -277,7 +269,6 @@
           prevEl.classList.add('active');
           prevEl.style.opacity = 0;
 
-          // Текстүүдэд доош хөдлөх эффект өгөх
           const texts = prevEl.querySelectorAll('h1, h2, button, #room-title');
           texts.forEach(el => {
             el.style.opacity = 0;
